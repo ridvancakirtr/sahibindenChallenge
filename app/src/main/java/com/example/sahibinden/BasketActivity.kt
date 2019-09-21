@@ -79,7 +79,6 @@ class BasketActivity : AppCompatActivity() {
 
         val jsonObjectRequest = JsonArrayRequest(Request.Method.GET, url, null,
             Response.Listener { response ->
-                //Log.d("TAM",response.getJSONObject(0).getJSONObject("productDetail").getString("orderDetail"))
 
                 for (item in 0 until response.length()) {
                     val date=response.getJSONObject(item).getString("date")
@@ -91,7 +90,7 @@ class BasketActivity : AppCompatActivity() {
                     var orderDetail=response.getJSONObject(0).getJSONObject("productDetail").getString("orderDetail")
                     var summaryPrice=response.getJSONObject(0).getJSONObject("productDetail").getString("summaryPrice")
 
-                    val data=itemDataModel(date,convertMonth(month),marketName,orderName,
+                    val data=itemDataModel(date,convertMonth(month),marketName,orderName(orderName),
                         "$productPrice TL",productState,orderDetail,summaryPrice)
                     Log.d("TAG", "Response: $data")
                     allItems.add(data)
@@ -110,7 +109,7 @@ class BasketActivity : AppCompatActivity() {
         // Access the RequestQueue through your singleton class.
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
     }
-
+    // gelen ay sayısal değerlerini çevirdik
     fun convertMonth(month:String):String?{
         var data:String?=null
         when (month) {
@@ -131,5 +130,16 @@ class BasketActivity : AppCompatActivity() {
             }
         }
         return data
+    }
+
+    // order name ismi 25 karakterden uzunsa  kesip ... ekledim.
+    fun orderName(orderName:String):String{
+        var new:String=orderName
+        if(orderName.length>18){
+            new =orderName.substring(0, 18)
+            new= "$new..."
+
+        }
+        return new
     }
 }

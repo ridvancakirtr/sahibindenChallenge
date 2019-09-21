@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">sahibinden</string>
+    <string name="welcome_to_sahibinden_com">Welcome to sahibinden.com</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="beni_hat_rla">Remember ME</string>
+    <string name="logout">LOGOUT</string>
+    <string name="cart">CART</string>
+</resources>

@@ -68,12 +68,12 @@ class BasketActivity : AppCompatActivity() {
 
         }
 
-        veriKaynagiHazirla()
+        dataSource()
         myAdaptor= MyAdapter(allItems)
     }
 
     @SuppressLint("WrongConstant")
-    fun veriKaynagiHazirla() {
+    fun dataSource() {
 
         val url = "http://kariyertechchallenge.mockable.io/"
 
@@ -92,7 +92,7 @@ class BasketActivity : AppCompatActivity() {
 
                     val data=itemDataModel(date,convertMonth(month),marketName,orderName(orderName),
                         "$productPrice TL",productState,orderDetail,summaryPrice)
-                    Log.d("TAG", "Response: $data")
+                    //Log.d("TAG", "Response: $data")
                     allItems.add(data)
                 }
 
@@ -132,7 +132,7 @@ class BasketActivity : AppCompatActivity() {
         return data
     }
 
-    // order name ismi 25 karakterden uzunsa  kesip ... ekledim.
+    // order name ismi 18 karakterden uzunsa  kesip ... ekledim.
     fun orderName(orderName:String):String{
         var new:String=orderName
         if(orderName.length>18){
